@@ -20,6 +20,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".NewCarActivity"
+            android:label="@string/title_activity_new_car" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.unrulyrecursion.mpgtracker.MainActivity" />
+        </activity>
+        <activity
+            android:name=".AddFillUpActivity"
+            android:label="@string/title_activity_add_fill_up" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.unrulyrecursion.MainActivity" />
+        </activity>
     </application>
 
 </manifest>
