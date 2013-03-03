@@ -41,4 +41,9 @@ public class MainActivity extends Activity {
     	intent.putExtra(CAR_NAME, carName);
     	startActivity(intent);
     }
+    
+    public void login(View view) {
+    	Intent intent = new Intent(this, LoginActivity.class);
+    	
+    }
 }

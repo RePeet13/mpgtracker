@@ -10,7 +10,8 @@
     <string name="button_carlist">Car List</string>
     <string name="new_car_name">New Car Name</string>
     <string name="button_create_new_car">Create</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="create_account">New Account</string>
+    <string name="login">Login</string>
     <string name="title_activity_new_car">Add New Car</string>
     <string name="title_activity_add_fill_up">Add Fill Up</string>
 
