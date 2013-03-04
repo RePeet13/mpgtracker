@@ -44,6 +44,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.unrulyrecursion.mpgtracker.mainactivity" />
         </activity>
+        <activity
+            android:name="com.unrulyrecursion.mpgtracker.GraphsActivity"
+            android:label="@string/title_activity_graphs"
+            android:parentActivityName="com.unrulyrecursion.mpgtracker.mainactivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.unrulyrecursion.mpgtracker.mainactivity" />
+        </activity>
     </application>
 
 </manifest>

@@ -13,7 +13,9 @@
         <TextView android:id="@+id/current_car"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:gravity="right|bottom"
             android:text="@string/current_car"
+            android:textSize="25sp"
             android:hint="@string/no_current_car"/>
     </LinearLayout>
         
