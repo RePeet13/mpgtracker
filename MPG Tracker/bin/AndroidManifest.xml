@@ -5,7 +5,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="8"
+        android:minSdkVersion="11"
         android:targetSdkVersion="17" />
 
     <application
@@ -34,6 +34,22 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.unrulyrecursion.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.unrulyrecursion.mpgtracker.CarListActivity"
+            android:label="@string/title_car_list"
+            android:parentActivityName="com.unrulyrecursion.mpgtracker.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.unrulyrecursion.mpgtracker.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.unrulyrecursion.mpgtracker.CarDetailActivity"
+            android:label="@string/title_car_detail"
+            android:parentActivityName=".CarListActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".CarListActivity" />
         </activity>
     </application>
 
