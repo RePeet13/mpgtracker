@@ -1,5 +1,8 @@
 package com.unrulyrecursion.mpgtracker.data;
 
+import java.util.List;//TODO Remove this when done testing
+import com.unrulyrecursion.mpgtracker.test.CarTestData;//TODO Remove this when done testing
+
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -58,12 +61,28 @@ public class MPGTrackerDBHelper extends SQLiteOpenHelper {
 		Log.d("MPGTrackerDBHelper", "Creating Fillups Table");
 		Log.i("MPGTrackerDBHelper", "SQL-" + SQL_CREATE_TABLE_FILLUPS);
 		db.execSQL(SQL_CREATE_TABLE_FILLUPS);
+		
+		
+		/* For Testing, Try this */
+		//TODO Take out this section
+		CarTestData carTestData = new CarTestData();
+		List<Car> carTestList = carTestData.carTestList;
+		
+		for(Car car : carTestList) {
+			addCar(car);
+		}
 	}
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		Log.v("MPGTrackerDBHelper", "Upgrading SQLite Database");
 		// TODO Auto-generated method stub
+		
+	}
+	
+	public void addCar(Car car) { //TODO add return value based on success
+		//TODO error checking for duplicates
+		
 		
 	}
 
