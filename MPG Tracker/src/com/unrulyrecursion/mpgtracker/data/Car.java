@@ -5,15 +5,29 @@ import java.util.LinkedHashMap;
 
 public class Car {
 
+	private String carName;
+	private String make;
+	private String model;
+	private String color;
+	private int id;
+	private int year;
 	private LinkedHashMap<String, String> props;
 	
-	public Car(String carName, String id, String make, String model, String year, String color) {
+	public Car(String carName, int id, String make, String model, int year, String color) {
+		
+		this.carName = carName;
+		this.id = id;
+		this.make = make;
+		this.model = model;
+		this.year = year;
+		this.color = color;
+		
 		props = new LinkedHashMap<String, String>();
 		props.put("name", new String(carName));
-		props.put("id", new String(id));
+		props.put("id", new String(Integer.toString(id)));
 		props.put("make", new String(make));
 		props.put("model", new String(model));
-		props.put("year", new String(year));
+		props.put("year", new String(Integer.toString(year)));
 		props.put("color", new String(color));
 	}
 	
@@ -81,7 +95,7 @@ public class Car {
 		return props.get("year");
 	}
 
-	public void setYear(String year) {
-		props.put("year", new String(year));
+	public void setYear(int year) {
+		props.put("year", new String(Integer.toString(year)));
 	}
 }
