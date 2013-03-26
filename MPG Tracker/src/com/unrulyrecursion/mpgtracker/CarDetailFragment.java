@@ -6,8 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
-import com.unrulyrecursion.mpgtracker.dummy.DummyContent;
+import com.unrulyrecursion.mpgtracker.data.Car;
 
 /**
  * A fragment representing a single Car detail screen. This fragment is either
@@ -24,7 +23,7 @@ public class CarDetailFragment extends Fragment {
 	/**
 	 * The dummy content this fragment is presenting.
 	 */
-	private DummyContent.DummyItem mItem;
+//	private DummyContent.DummyItem mItem;
 
 	/**
 	 * Mandatory empty constructor for the fragment manager to instantiate the
@@ -41,8 +40,8 @@ public class CarDetailFragment extends Fragment {
 			// Load the dummy content specified by the fragment
 			// arguments. In a real-world scenario, use a Loader
 			// to load content from a content provider.
-			mItem = DummyContent.ITEM_MAP.get(getArguments().getString(
-					ARG_ITEM_ID));
+//			mItem = DummyContent.ITEM_MAP.get(getArguments().getString(
+//					ARG_ITEM_ID));
 		}
 	}
 
@@ -53,10 +52,10 @@ public class CarDetailFragment extends Fragment {
 				container, false);
 
 		// Show the dummy content as text in a TextView.
-		if (mItem != null) {
-			((TextView) rootView.findViewById(R.id.car_detail))
-					.setText(mItem.content);
-		}
+//		if (mItem != null) {
+//			((TextView) rootView.findViewById(R.id.car_detail))
+//					.setText(mItem.content);
+//		}
 
 		return rootView;
 	}
