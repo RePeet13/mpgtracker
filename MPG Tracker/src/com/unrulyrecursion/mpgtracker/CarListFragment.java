@@ -1,5 +1,8 @@
 package com.unrulyrecursion.mpgtracker;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
@@ -73,6 +76,20 @@ public class CarListFragment extends ListFragment {
 //		setListAdapter(new ArrayAdapter<DummyContent.DummyItem>(getActivity(),
 //				android.R.layout.simple_list_item_activated_1,
 //				android.R.id.text1, DummyContent.ITEMS));
+		
+    	// Temporary list
+    	List<String> cars = new ArrayList<String>();
+    	cars.add("Eclipse");
+        cars.add("Toyota Truck");
+        cars.add("Lexus");
+        cars.add("Jag");
+        cars.add("Red");
+        cars.add("Sienna");
+        cars.add("Stratus");
+        cars.add("Miata");
+    	
+    	RowColorAdapter adapter = new RowColorAdapter(getActivity(), R.layout.car_list_entry, R.id.entry_silver, cars);
+    	setListAdapter(adapter);
 	}
 
 	@Override
