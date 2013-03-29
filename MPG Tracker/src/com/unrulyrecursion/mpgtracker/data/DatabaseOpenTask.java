@@ -13,9 +13,14 @@ public class DatabaseOpenTask extends AsyncTask<String, Integer, List<Car>> {
 		// TODO Get writable database
 		// TODO handle if there are no cars
 		// TODO Get and make cars from them
-		// TODO progress is cars made/total cars
+		// TODO progress is cars made/total cars - call publishProgress() to call onProgressUpdate()
 		// TODO returns arraylist of cars in carlist
 		return null;
 	}
+	
+	@Override
+	protected void onProgressUpdate(Integer... progress) {
+//        setProgressPercent(progress[0]);
+    }
 
 }
