@@ -21,30 +21,32 @@ public class MPGTrackerDBHelper extends SQLiteOpenHelper {
 	 */
 	
 	private static final String COMMA_SEP = ",";
+	private static final String PRIMARY_KEY_TEXT = "_id integer primary key autoincrement";
 	
 	// Type Vars
 	private static final String TEXT_TYPE = " TEXT";
+	private static final String INT_TYPE = " INTEGER";
 	
 	// Table Create Statements
 	private static final String SQL_CREATE_TABLE_CARS = //TODO Test this. Logcat Debug Level
-			"CREATE TABLE " + DBContract.Cars.TABLE_NAME + " (" +
-			DBContract.COLUMN_NAME_CAR_NAME + TEXT_TYPE + " PRIMARY KEY," + 
+			"CREATE TABLE " + DBContract.Cars.TABLE_NAME + " (" 
+			+ PRIMARY_KEY_TEXT + COMMA_SEP + 
+			DBContract.COLUMN_NAME_CAR_NAME + TEXT_TYPE + COMMA_SEP + 
 			DBContract.Cars.COLUMN_NAME_COLOR + TEXT_TYPE + COMMA_SEP + 
-			DBContract.COLUMN_NAME_TOTAL_MILEAGE + TEXT_TYPE + COMMA_SEP + 
+			DBContract.COLUMN_NAME_TOTAL_MILEAGE + INT_TYPE + COMMA_SEP + 
 			DBContract.Cars.COLUMN_NAME_MAKE + TEXT_TYPE + COMMA_SEP + 
 			DBContract.Cars.COLUMN_NAME_MODEL + TEXT_TYPE + COMMA_SEP + 
-			DBContract.Cars.COLUMN_NAME_YEAR + TEXT_TYPE + COMMA_SEP + " )";
+			DBContract.Cars.COLUMN_NAME_YEAR + INT_TYPE + " )";
 	
 	private static final String SQL_CREATE_TABLE_FILLUPS = //TODO Test this. Logcat Debug Level
 			"CREATE TABLE " + DBContract.Fillups.TABLE_NAME + " (" + 
-			DBContract.Fillups._ID + " INTEGER PRIMARY KEY," + 
-			DBContract.Fillups.COLUMN_NAME_ENTRY_ID + TEXT_TYPE + COMMA_SEP + 
+			PRIMARY_KEY_TEXT + COMMA_SEP + 
 			DBContract.COLUMN_NAME_CAR_NAME + TEXT_TYPE + COMMA_SEP + 
 			DBContract.COLUMN_NAME_DATE + TEXT_TYPE + COMMA_SEP + 
-			DBContract.COLUMN_NAME_TOTAL_MILEAGE + TEXT_TYPE + COMMA_SEP + 
-			DBContract.Fillups.COLUMN_NAME_TRIP_MILEAGE + TEXT_TYPE + COMMA_SEP + 
+			DBContract.COLUMN_NAME_TOTAL_MILEAGE + INT_TYPE + COMMA_SEP + 
+			DBContract.Fillups.COLUMN_NAME_TRIP_MILEAGE + INT_TYPE + COMMA_SEP + 
 			DBContract.Fillups.COLUMN_NAME_GALLONS_IN + TEXT_TYPE + COMMA_SEP + 
-			DBContract.Fillups.COLUMN_NAME_PRICE_PER_GALLON + TEXT_TYPE + COMMA_SEP + " )";
+			DBContract.Fillups.COLUMN_NAME_PRICE_PER_GALLON + TEXT_TYPE + " )";
 	
 	
 	public MPGTrackerDBHelper(Context context) {
