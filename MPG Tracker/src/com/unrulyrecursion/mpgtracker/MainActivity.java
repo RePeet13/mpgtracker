@@ -16,7 +16,6 @@ public class MainActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //TODO get current car yea
         
     }
 
@@ -24,6 +23,12 @@ public class MainActivity extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_main, menu);
         return true;
+    }
+    
+    @Override
+    public void onResume() {
+    	// TODO call async task to get database here (and in the detail activity)
+    	// this will kick it off, and cache the db for faster reads later
     }
     
     /* Called when user clicks Fill Up on home screen */
