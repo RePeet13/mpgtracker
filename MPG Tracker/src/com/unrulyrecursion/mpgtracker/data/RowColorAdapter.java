@@ -1,4 +1,4 @@
-package com.unrulyrecursion.mpgtracker;
+package com.unrulyrecursion.mpgtracker.data;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 
-class RowColorAdapter extends ArrayAdapter<String> {
+public class RowColorAdapter extends ArrayAdapter<String> {
 
 	private static final int type_count = 10;
 	private static final int type_color_red = 1;

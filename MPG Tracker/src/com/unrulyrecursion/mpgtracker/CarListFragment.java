@@ -7,9 +7,9 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import com.unrulyrecursion.mpgtracker.data.Car;
+import com.unrulyrecursion.mpgtracker.data.RowColorAdapter;
 
 /**
  * A list fragment representing a list of Cars. This fragment also supports
