@@ -10,23 +10,25 @@ public class Car {
 	private String model;
 	private String color;
 	private final static String defColor = "DEEP_RED";
-	private int id;
+	private long id;
+	private long totalMileage;
 	private int year;
 	
-	public Car(int id, String carName, String color, String make, String model, int year) {
+	public Car(long id, String carName, String color, String make, String model, int year, long totalMileage) {
 
 		this.id = id; // TODO This should receive some special attention (if its -1, or null, etc)
 		
 		this.carName = carName;
+		this.color = color;
 		this.make = make;
 		this.model = model;
 		this.year = year;
-		this.color = color;
+		this.totalMileage = totalMileage;
 
 	}
-	
+
 	public Car(String carName, String color, String make, String model, int year) {
-		this(-1, carName, color, make, model, year);
+		this(-1, carName, color, make, model, year, 0);
 	}
 	
 	public Car(String carName, String color) {
@@ -36,7 +38,6 @@ public class Car {
 	public Car(String carName) {
 		this(carName, defColor);
 	}
-
 	
 	/* Getters and Setters */
 	public String getCarName() {
@@ -71,11 +72,11 @@ public class Car {
 		this.color = color;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 

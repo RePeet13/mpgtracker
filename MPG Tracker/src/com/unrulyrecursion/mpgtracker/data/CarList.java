@@ -36,7 +36,7 @@ public class CarList {
 
     private static void addItem(Car item) {
         ITEMS.add(item.getCarName());
-        ITEM_MAP.put(Integer.toString(item.getId()), item.getCarName());
+        ITEM_MAP.put(Long.toString(item.getId()), item.getCarName());
     }
     
 
