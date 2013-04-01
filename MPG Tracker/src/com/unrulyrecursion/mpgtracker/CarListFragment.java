@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ListView;
 import com.unrulyrecursion.mpgtracker.data.Car;
 import com.unrulyrecursion.mpgtracker.data.RowColorAdapter;
+import com.unrulyrecursion.mpgtracker.test.CarTestData;
 
 /**
  * A list fragment representing a list of Cars. This fragment also supports
@@ -78,17 +79,10 @@ public class CarListFragment extends ListFragment {
 //				android.R.id.text1, DummyContent.ITEMS));
 		
     	// Temporary list
-    	List<String> cars = new ArrayList<String>();
-    	cars.add("Eclipse");
-        cars.add("Toyota Truck");
-        cars.add("Lexus");
-        cars.add("Jag");
-        cars.add("Red");
-        cars.add("Sienna");
-        cars.add("Stratus");
-        cars.add("Miata");
+    	CarTestData test = new CarTestData();
+    	Car[] testArray = test.carTestArray;
     	
-    	RowColorAdapter adapter = new RowColorAdapter(getActivity(), R.layout.car_list_entry, R.id.entry_silver, cars);
+    	RowColorAdapter adapter = new RowColorAdapter(getActivity(), testArray);
     	setListAdapter(adapter);
 	}
 
