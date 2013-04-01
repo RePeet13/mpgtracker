@@ -7,7 +7,8 @@ import com.unrulyrecursion.mpgtracker.data.Car;
 
 public class CarTestData {
 	
-	public List<Car> carTestList; 
+	public List<Car> carTestList;
+	public Car[] carTestArray;
 
 	public CarTestData () {
 		carTestList = new ArrayList<Car>();
@@ -22,5 +23,8 @@ public class CarTestData {
 		carTestList.add(silverBullet);
 		Car littleRedSportsCar = new Car("Little Red Sports Car", "Red", "Mazda", "Miata", 1991);
 		carTestList.add(littleRedSportsCar);
+		
+
+		carTestArray = new Car[] {limpingOx, scarletStreak, lumberingElephant, silverBullet, littleRedSportsCar};
 	}
 }
