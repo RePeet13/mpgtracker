@@ -1,10 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/entry_silver"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="50dp"
-    android:background="@drawable/button_silver"
-    android:gravity="bottom|center"
-    android:paddingBottom="3dp"
-    android:textAppearance="?android:attr/textAppearanceLargeInverse" />
+	    android:layout_height="50dp"
+    android:orientation="vertical" 
+    android:background="@drawable/button_silver" >
+    
+    
+	<TextView
+	    android:id="@+id/list_entry_car_name"
+	    android:layout_width="wrap_content"
+	    android:layout_height="match_parent"
+	    android:gravity="top|left"
+	    android:paddingTop="3dp"
+	    android:textAppearance="?android:attr/textAppearanceLargeInverse"
+	    android:textIsSelectable="false" />
+	
+	<ImageView 
+	    android:id="@+id/list_entry_car_image"
+	    android:layout_width="0dp"
+	    android:layout_weight="1"
+	    android:layout_height="0dp"
+	    android:padding="3dp" />
+	
+	<TextView
+	    android:id="@+id/list_entry_car_details"
+	    android:layout_width="wrap_content"
+	    android:layout_height="match_parent"
+	    android:gravity="bottom|right"
+	    android:paddingTop="3dp"
+	    android:textAppearance="?android:attr/textAppearanceMediumInverse"
+	    android:textIsSelectable="false" />
+	
+</LinearLayout>
 
