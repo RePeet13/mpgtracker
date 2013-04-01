@@ -3,7 +3,7 @@
 
     <string name="app_name">MPG Tracker</string>
     <string name="menu_settings">Settings</string>
-    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_main">MPG Tracker</string>
     <string name="current_car"></string>
     <string name="no_current_car">No Current Car</string>
     <string name="button_fillup">Add Fill-Up</string>
