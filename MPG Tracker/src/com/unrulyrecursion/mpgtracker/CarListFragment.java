@@ -9,6 +9,7 @@ import android.support.v4.app.ListFragment;
 import android.view.View;
 import android.widget.ListView;
 import com.unrulyrecursion.mpgtracker.data.Car;
+import com.unrulyrecursion.mpgtracker.data.Garage;
 import com.unrulyrecursion.mpgtracker.data.RowColorAdapter;
 import com.unrulyrecursion.mpgtracker.test.CarTestData;
 
@@ -23,6 +24,8 @@ import com.unrulyrecursion.mpgtracker.test.CarTestData;
  */
 public class CarListFragment extends ListFragment {
 
+	private Garage garage;
+	
 	/**
 	 * The serialization (saved instance state) Bundle key representing the
 	 * activated item position. Only used on tablets.
@@ -72,17 +75,10 @@ public class CarListFragment extends ListFragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
-		// TODO: replace with a real list adapter.
-//		setListAdapter(new ArrayAdapter<DummyContent.DummyItem>(getActivity(),
-//				android.R.layout.simple_list_item_activated_1,
-//				android.R.id.text1, DummyContent.ITEMS));
 		
-    	// Temporary list
-    	CarTestData test = new CarTestData();
-    	Car[] testArray = test.carTestArray;
+		garage = new Garage(getActivity());
     	
-    	RowColorAdapter adapter = new RowColorAdapter(getActivity(), testArray);
+    	RowColorAdapter adapter = new RowColorAdapter(getActivity(), garage.getCarArray());
     	setListAdapter(adapter);
 	}
 

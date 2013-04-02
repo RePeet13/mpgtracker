@@ -26,8 +26,11 @@ public class Garage {
 	private MPGTrackerDBHelper dbh;
 	private List<Car> carList;
 	private Car[] carArray;
+	public Boolean ready;
 
 	public Garage(Context context) {
+		
+		ready = false;
 		
 		carList = new ArrayList<Car>();
 		
@@ -176,5 +179,15 @@ public class Garage {
 		Log.i("Garage", "Car Made");
 		
 		return car;
+	}
+	
+	public Car[] getCarArray() {
+		// TODO dirty checking based on whether stuff has been written to the database or not
+		return carArray;
+	}
+	
+	public List<Car> getCarList() {
+		// TODO dirty checking based on whether stuff has been written to the database or not
+		return carList;
 	}
 }
