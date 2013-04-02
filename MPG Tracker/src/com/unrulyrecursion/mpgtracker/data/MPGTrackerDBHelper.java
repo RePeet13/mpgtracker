@@ -22,7 +22,7 @@ public class MPGTrackerDBHelper extends SQLiteOpenHelper {
 	 * Database helper variables
 	 */
 	private static final String PRIMARY_KEY_TEXT = " integer primary key autoincrement";
-	private static final String COMMA_SEP = ",";
+	private static final String COMMA_SEP = ", ";
 	private static final String NOT_NULL = " NOT NULL";
 	
 	// Type Vars
@@ -38,7 +38,7 @@ public class MPGTrackerDBHelper extends SQLiteOpenHelper {
 			DBContract.COLUMN_NAME_TOTAL_MILEAGE + INT_TYPE + COMMA_SEP + 
 			DBContract.Cars.COLUMN_NAME_MAKE + TEXT_TYPE + COMMA_SEP + 
 			DBContract.Cars.COLUMN_NAME_MODEL + TEXT_TYPE + COMMA_SEP + 
-			DBContract.Cars.COLUMN_NAME_YEAR + INT_TYPE + " )";
+			DBContract.Cars.COLUMN_NAME_YEAR + INT_TYPE + ")";
 	
 	private static final String SQL_CREATE_TABLE_FILLUPS = 
 			"CREATE TABLE " + DBContract.Fillups.TABLE_NAME + " (" + 
@@ -48,7 +48,7 @@ public class MPGTrackerDBHelper extends SQLiteOpenHelper {
 			DBContract.COLUMN_NAME_TOTAL_MILEAGE + INT_TYPE + COMMA_SEP + 
 			DBContract.Fillups.COLUMN_NAME_TRIP_MILEAGE + INT_TYPE + COMMA_SEP + 
 			DBContract.Fillups.COLUMN_NAME_GALLONS_IN + TEXT_TYPE + COMMA_SEP + 
-			DBContract.Fillups.COLUMN_NAME_PRICE_PER_GALLON + TEXT_TYPE + " )";
+			DBContract.Fillups.COLUMN_NAME_PRICE_PER_GALLON + TEXT_TYPE + ")";
 	
 	
 	public MPGTrackerDBHelper(Context context) {
