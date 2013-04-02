@@ -24,8 +24,12 @@ public class Garage {
 	
 	private SQLiteDatabase db;
 	private MPGTrackerDBHelper dbh;
+	private List<Car> carList;
+	private Car[] carArray;
 
 	public Garage(Context context) {
+		
+		carList = new ArrayList<Car>();
 		
 		dbh = new MPGTrackerDBHelper(context);
 		open();
@@ -36,7 +40,15 @@ public class Garage {
 		CarTestData carTestData = new CarTestData();
 		List<Car> carTestList = carTestData.carTestList;
 		
+		int i = carTestList.size();
+		carArray = new Car[i];
+		i = 0;
+		
 		for(Car car : carTestList) {
+			carList.add(car);
+			carArray[i] = car;
+			i++;
+			/* Add to database */
 			addCar(car);
 		}
 		
@@ -54,7 +66,7 @@ public class Garage {
 	}
 	
 	public void addCar(Car car) { //TODO add return value based on success
-		//TODO error checking for duplicates?
+		//TODO check against current carlist to see if its already in it, later regen carArray
 		
 		ContentValues cv = new ContentValues();
 		Log.d("Garage", "Adding Car: " + car.getCarName());
