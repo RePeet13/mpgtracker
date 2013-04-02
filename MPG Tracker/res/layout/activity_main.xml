@@ -34,7 +34,8 @@
 	        android:layout_weight="1"
 	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"
-	        android:text="@string/button_carlist" />
+	        android:text="@string/button_carlist"
+	        android:onClick="listCars" />
     </LinearLayout>
 
 	<LinearLayout

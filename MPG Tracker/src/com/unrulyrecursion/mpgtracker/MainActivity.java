@@ -20,6 +20,7 @@ public class MainActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //TODO get current car yea...maybe
         
     }
 
@@ -27,6 +28,11 @@ public class MainActivity extends Activity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.activity_main, menu);
         return true;
+    }
+    
+    public void listCars(View view) {
+    	Intent intent = new Intent(this, CarListActivity.class);
+    	startActivity(intent);
     }
     
     @Override
