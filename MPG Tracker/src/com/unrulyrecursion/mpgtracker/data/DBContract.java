@@ -18,6 +18,7 @@ public class DBContract {
 	 */
 	
 	// Global Column names
+	public static final String COLUMN_ID = "_id";
 	public static final String COLUMN_NAME_CAR_NAME = "carname";
 	public static final String COLUMN_NAME_DATE = "date";
 	public static final String COLUMN_NAME_TOTAL_MILEAGE = "totalmileage";
@@ -29,13 +30,17 @@ public class DBContract {
 	 */
 	public static abstract class Cars implements BaseColumns {
 		public static final String TABLE_NAME = "cars";
+//		public static final String COLUMN_ID = "_id";
 //		public static final String COLUMN_NAME_CAR_NAME = "carname"; //primary key
 		public static final String COLUMN_NAME_COLOR = "color";
 		public static final String COLUMN_NAME_MAKE = "make";
 		public static final String COLUMN_NAME_MODEL = "model";
 		public static final String COLUMN_NAME_YEAR = "year";
 //		public static final String COLUMN_NAME_TOTAL_MILEAGE = "totalmileage";
-	}
+		public static final String[] COLUMNS = {COLUMN_ID,
+			COLUMN_NAME_CAR_NAME, COLUMN_NAME_COLOR, COLUMN_NAME_MAKE, 
+			COLUMN_NAME_MODEL, COLUMN_NAME_YEAR, COLUMN_NAME_TOTAL_MILEAGE};
+}
 	
 	/**
 	 * Contains information of all fillups that have been recorded. Keyed by 
@@ -44,13 +49,17 @@ public class DBContract {
 	 */
 	public static abstract class Fillups implements BaseColumns {
 		public static final String TABLE_NAME = "fillups";
-		public static final String COLUMN_NAME_ENTRY_ID = "entryid"; //primary key
+//		public static final String COLUMN_ID = "_id";
 //		public static final String COLUMN_NAME_CAR_NAME = "carname";
 //		public static final String COLUMN_NAME_DATE = "date";
 //		public static final String COLUMN_NAME_TOTAL_MILEAGE = "totalmileage";
 		public static final String COLUMN_NAME_TRIP_MILEAGE = "tripmileage";
 		public static final String COLUMN_NAME_GALLONS_IN = "gallonsin";
 		public static final String COLUMN_NAME_PRICE_PER_GALLON = "pricepergallon";
+		public static final String[] COLUMNS = {COLUMN_ID,
+			COLUMN_NAME_CAR_NAME, COLUMN_NAME_DATE, COLUMN_NAME_TOTAL_MILEAGE, 
+			COLUMN_NAME_TRIP_MILEAGE, COLUMN_NAME_GALLONS_IN, 
+			COLUMN_NAME_PRICE_PER_GALLON};
 	}
 	
 	
@@ -58,8 +67,8 @@ public class DBContract {
 
 	// Used in future implementation with Oil Change Tracking
 	public static abstract class OilChange implements BaseColumns {
-		public static final String TABLE_NAME = "fillups";
-		public static final String COLUMN_NAME_ENTRY_ID = "entryid"; //primary key
+		public static final String TABLE_NAME = "OIL_CHANGES";
+//	public static final String COLUMN_ID = "_id";
 		public static final String COLUMN_NAME_CAR_NAME = "carname";
 		public static final String COLUMN_NAME_DATE = "date";
 		public static final String COLUMN_NAME_TOTAL_MILEAGE = "totalmileage";
@@ -72,6 +81,7 @@ public class DBContract {
 	
 	// Used in future implementation with Notifications to check maintenance items
 	public static abstract class DefaultCheckTimes implements BaseColumns {
+//	public static final String COLUMN_ID = "_id";
 		public static final String TABLE_NAME = "defaultchecktimes";
 		public static final String COLUMN_NAME_CAR_NAME = "carname"; // generic
 		public static final String COLUMN_NAME_CHANGE_OIL = "changeoil"; // 5000 miles

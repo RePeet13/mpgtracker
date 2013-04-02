@@ -31,6 +31,12 @@ public class MainActivity extends Activity {
     	startActivity(intent);
     }
     
+    @Override
+    public void onResume() {
+    	// TODO call async task to get database here (and in the detail activity)
+    	// this will kick it off, and cache the db for faster reads later
+    }
+    
     /* Called when user clicks Fill Up on home screen */
     public void newFillUp(View view) {
     	Intent intent = new Intent(this, AddFillUpActivity.class);

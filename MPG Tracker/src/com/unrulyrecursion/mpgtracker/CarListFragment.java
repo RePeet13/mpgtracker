@@ -1,12 +1,16 @@
 package com.unrulyrecursion.mpgtracker;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import com.unrulyrecursion.mpgtracker.data.Car;
+import com.unrulyrecursion.mpgtracker.data.RowColorAdapter;
+import com.unrulyrecursion.mpgtracker.test.CarTestData;
 
 /**
  * A list fragment representing a list of Cars. This fragment also supports
@@ -73,6 +77,13 @@ public class CarListFragment extends ListFragment {
 //		setListAdapter(new ArrayAdapter<DummyContent.DummyItem>(getActivity(),
 //				android.R.layout.simple_list_item_activated_1,
 //				android.R.id.text1, DummyContent.ITEMS));
+		
+    	// Temporary list
+    	CarTestData test = new CarTestData();
+    	Car[] testArray = test.carTestArray;
+    	
+    	RowColorAdapter adapter = new RowColorAdapter(getActivity(), testArray);
+    	setListAdapter(adapter);
 	}
 
 	@Override
