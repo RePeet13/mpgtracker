@@ -7,6 +7,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import com.unrulyrecursion.mpgtracker.data.Car;
 import com.unrulyrecursion.mpgtracker.data.Garage;
@@ -78,7 +79,15 @@ public class CarListFragment extends ListFragment {
 		
 		garage = new Garage(getActivity());
     	
-    	RowColorAdapter adapter = new RowColorAdapter(getActivity(), garage.getCarArray());
+//    	RowColorAdapter adapter = new RowColorAdapter(getActivity(), garage.getCarArray());
+		
+		Car[] cars = garage.getCarArray();
+		String[] carNames = new String[cars.length];
+		for (int i = 0; i < cars.length; i++) {
+			carNames[i] = cars[i].getCarName();
+		}
+		
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, carNames);
     	this.setListAdapter(adapter);
 	}
 
