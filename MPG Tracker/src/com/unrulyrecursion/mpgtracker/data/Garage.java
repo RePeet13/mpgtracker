@@ -50,12 +50,16 @@ public class Garage {
 		for(Car car : carTestList) {
 			carList.add(car);
 			carArray[i] = car;
+			Log.d("Garage - Test List", "i: " + i);
 			i++;
 			/* Add to database */
 			addCar(car);
 		}
 		
 		close();
+		
+		Log.d("Garage", "Finishing up constructor");
+		ready = true;
 	}
 	
 	public void open() throws SQLException {
@@ -72,26 +76,27 @@ public class Garage {
 		//TODO check against current carlist to see if its already in it, later regen carArray
 		
 		ContentValues cv = new ContentValues();
-		Log.d("Garage", "Adding Car: " + car.getCarName());
+		Log.d("Garage - Add Car", "Adding Car: " + car.getCarName());
 		cv.put(DBContract.COLUMN_NAME_CAR_NAME, car.getCarName());
 		
 //		Log.i("Garage", "Car ID: " + car.getId()); // for updateCar (no Id yet)
 //		cv.put(DBContract.COLUMN_ID, car.getId());
 		
-		Log.i("Garage", "Car Color: " + car.getColor());
+		Log.i("Garage - Add Car", "Car Color: " + car.getColor());
 		cv.put(DBContract.Cars.COLUMN_NAME_COLOR, car.getColor());
 		
-		Log.i("Garage", "Car Make: " + car.getMake());
+		Log.i("Garage - Add Car", "Car Make: " + car.getMake());
 		cv.put(DBContract.Cars.COLUMN_NAME_MAKE, car.getMake());
 		
-		Log.i("Garage", "Car Model: " + car.getModel());
+		Log.i("Garage - Add Car", "Car Model: " + car.getModel());
 		cv.put(DBContract.Cars.COLUMN_NAME_MODEL, car.getModel());
 		
-		Log.i("Garage", "Car Year: " + car.getYear());
+		Log.i("Garage - Add Car", "Car Year: " + car.getYear());
 		cv.put(DBContract.Cars.COLUMN_NAME_YEAR, car.getYear());
 		
 		long carId;
 		carId = dbh.addCar(db, cv);
+		Log.i("Garage - Add Car", "Car ID: " + carId);
 		car.setId(carId);
 	}
 	
@@ -183,11 +188,13 @@ public class Garage {
 	
 	public Car[] getCarArray() {
 		// TODO dirty checking based on whether stuff has been written to the database or not
+		Log.i("Garage", "getCarArray");
 		return carArray;
 	}
 	
 	public List<Car> getCarList() {
 		// TODO dirty checking based on whether stuff has been written to the database or not
+		Log.i("Garage", "getCarList");
 		return carList;
 	}
 }

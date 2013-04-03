@@ -79,7 +79,7 @@ public class CarListFragment extends ListFragment {
 		garage = new Garage(getActivity());
     	
     	RowColorAdapter adapter = new RowColorAdapter(getActivity(), garage.getCarArray());
-    	setListAdapter(adapter);
+    	this.setListAdapter(adapter);
 	}
 
 	@Override

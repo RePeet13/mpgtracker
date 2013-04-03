@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.unrulyrecursion.mpgtracker.R; // TODO is this import inappropriate?
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,6 +45,9 @@ public class RowColorAdapter extends ArrayAdapter<String> {
 
 	@Override
 	public View getView(int position, View convertView, ViewGroup parent) {
+		
+		Log.d("RowColorAdapter", "Inflating list entry");
+		
 		LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		
 		View rowView = inflater.inflate(R.layout.car_list_entry, parent, false);
