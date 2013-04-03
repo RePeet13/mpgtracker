@@ -2,6 +2,8 @@ package com.unrulyrecursion.mpgtracker.data;
 
 import java.util.LinkedHashMap;
 
+import android.util.Log;
+
 
 public class Car {
 
@@ -37,6 +39,58 @@ public class Car {
 	
 	public Car(String carName) {
 		this(carName, defColor);
+	}
+	
+	/* Overrides for important methods (toString() and equals()) */
+	
+	@Override
+	public boolean equals(Object other) {
+		Car outside;
+		try {
+			outside = (Car) other;
+		}
+		catch (Exception e) {
+			Log.w("Car - Equals", "Tried to cast object passed in to Car - Failed");
+			return false;
+		}
+		
+		/* Check everything but color, which doesn't matter */
+		
+		if (carName.compareToIgnoreCase(outside.getCarName()) < 0) {
+			Log.i("Car - Equals", "Car Names do not match");
+			return false;
+		}
+		
+		if (make.compareToIgnoreCase(outside.getMake()) < 0) {
+			Log.i("Car - Equals", "Car Make does not match");
+			return false;
+		}
+		
+		if (model.compareToIgnoreCase(outside.getModel()) < 0) {
+			Log.i("Car - Equals", "Car Model does not match");
+			return false;
+		}
+		
+		if (year != outside.getYear()) {
+			Log.i("Car - Equals", "Car Year does not match");
+			return false;
+		}
+		
+		if (id != outside.getId()) {
+			Log.i("Car - Equals", "Car ID does not match");
+			return false;
+		}
+		
+		return true;
+	}
+	
+	@Override
+	public String toString() {
+		StringBuilder out = new StringBuilder();
+		out.append(carName);
+		out.append(" (id - " + id + ") ");
+		out.append(Integer.toString(year) + " " + make + " " + model + " (color: " + color + ")");
+		return out.toString();
 	}
 	
 	/* Getters and Setters */
