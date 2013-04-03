@@ -26,11 +26,13 @@ public class Garage {
 	private MPGTrackerDBHelper dbh;
 	private List<Car> carList;
 	private Car[] carArray;
-	public Boolean ready;
+	public Boolean ready, arrayClean, listClean;
 
 	public Garage(Context context) {
 		
 		ready = false;
+		arrayClean = false; // TODO implement this later in the app as well
+		listClean = false; // TODO implement this later in the app as well
 		
 		carList = new ArrayList<Car>();
 		
@@ -189,12 +191,20 @@ public class Garage {
 	public Car[] getCarArray() {
 		// TODO dirty checking based on whether stuff has been written to the database or not
 		Log.i("Garage", "getCarArray");
+		if (arrayClean) {
+			return carArray;
+		}
+		
+		// TODO implement this
 		return carArray;
 	}
 	
 	public List<Car> getCarList() {
 		// TODO dirty checking based on whether stuff has been written to the database or not
 		Log.i("Garage", "getCarList");
-		return carList;
+		if (listClean) {
+			return carList;
+		}
+		return getAllCars(); // TODO not a good way to do this...
 	}
 }
