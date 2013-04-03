@@ -1,14 +1,93 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text=""
-        tools:context=".NewCarActivity" />
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center_vertical|center_horizontal"
+        android:text="@string/title_activity_new_car"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:background="@drawable/button_silver" />
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="10dp" >
+        
+	    <EditText
+	        android:id="@+id/new_car_name"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:gravity="center_horizontal"
+	        android:hint="@string/car_name"
+	        android:paddingTop="10dp"
+	        android:text="" />
+	    
+	    <EditText
+	        android:id="@+id/new_car_color"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:gravity="center_horizontal"
+	        android:hint="@string/color"
+	        android:paddingTop="25dp"
+	        android:text="" />
+	    
+	    <EditText
+	        android:id="@+id/new_car_year"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:gravity="center_horizontal"
+	        android:hint="@string/year"
+	        android:paddingTop="25dp"
+	        android:text="" />
+	    
+	    <EditText android:id="@+id/new_car_make"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:gravity="center_horizontal"
+	        android:hint="@string/make"
+	        android:text="" />
+	    
+	    <EditText android:id="@+id/new_car_model"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:gravity="center_horizontal"
+	        android:hint="@string/model"
+	        android:text="" />
+	    
+	    <EditText
+	        android:id="@+id/new_car_mileage"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:gravity="center_horizontal"
+	        android:hint="@string/current_total_mileage"
+	        android:paddingTop="25dp"
+	        android:text="" />
+	
+	    <LinearLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
+	        android:gravity="right"
+	        android:orientation="horizontal"
+	        android:paddingTop="15dp" >
+		    
+		    <Button
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:gravity="center_vertical|center_horizontal"
+		        android:paddingLeft="15dp"
+		        android:paddingRight="15dp"
+		        android:text="@string/button_create_new_car"
+		        android:onClick="createCar" />
+	    </LinearLayout>
+	    
+	</LinearLayout>
 
-</RelativeLayout>
+</LinearLayout>

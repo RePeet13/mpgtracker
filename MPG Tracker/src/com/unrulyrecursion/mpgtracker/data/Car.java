@@ -28,7 +28,11 @@ public class Car {
 		this.totalMileage = totalMileage;
 
 	}
-
+	
+	public Car(String carName, String color, String make, String model, int year, int totalMileage) {
+		this(-1, carName, color, make, model, year, totalMileage);
+	}
+	
 	public Car(String carName, String color, String make, String model, int year) {
 		this(-1, carName, color, make, model, year, 0);
 	}

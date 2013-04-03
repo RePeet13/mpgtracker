@@ -19,5 +19,11 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_car_list">Cars</string>
     <string name="title_car_detail">Car Detail</string>
+    <string name="car_name">Car Name</string>
+    <string name="year">Year</string>
+    <string name="make">Make</string>
+    <string name="model">Model</string>
+    <string name="color">Color</string>
+    <string name="current_total_mileage">Current Total Mileage</string>
 
 </resources>
