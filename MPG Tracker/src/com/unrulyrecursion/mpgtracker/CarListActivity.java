@@ -4,7 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.NavUtils;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
 
 /**
  * An activity representing a list of Cars. This activity has different
@@ -95,4 +98,10 @@ public class CarListActivity extends FragmentActivity implements
 			startActivity(detailIntent);
 		}
 	}
+	
+    public void newCar(View view) {
+    	Log.d("Car List Activity", "Entered newCar method");
+    	Intent intent = new Intent(this, NewCarActivity.class);
+    	startActivity(intent);
+    }
 }
