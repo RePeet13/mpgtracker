@@ -26,7 +26,10 @@ import com.unrulyrecursion.mpgtracker.test.CarTestData;
 public class CarListFragment extends ListFragment {
 
 	private Garage garage;
-	
+	private final ArrayList<String> carNames = new ArrayList<String>();
+	private final ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), 
+			android.R.layout.simple_list_item_1, carNames);
+
 	/**
 	 * The serialization (saved instance state) Bundle key representing the
 	 * activated item position. Only used on tablets.
@@ -76,21 +79,42 @@ public class CarListFragment extends ListFragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+
 		garage = new Garage(getActivity());
-    	
-//    	RowColorAdapter adapter = new RowColorAdapter(getActivity(), garage.getCarArray());
+
+		// RowColorAdapter adapter = new RowColorAdapter(getActivity(),
+		// garage.getCarArray());
 		
-		Car[] cars = garage.getCarArray();
-		String[] carNames = new String[cars.length];
-		for (int i = 0; i < cars.length; i++) {
-			carNames[i] = cars[i].getCarName();
+		ArrayList<Car> cars = (ArrayList<Car>) garage.getCarList();
+		
+		if (cars.size() > 1) {
+			
+			for (Car car : cars) {
+				carNames.add(car.getCarName());
+			}
+
+		} else {
+			carNames.add("(none)");
 		}
-		
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, carNames);
-    	this.setListAdapter(adapter);
+		this.setListAdapter(adapter);
+
 	}
 
+	@Override
+	public void onResume() { // TODO this doesn't work as I think it should - Fix
+		ArrayList<Car> cars = (ArrayList<Car>) garage.getCarList();
+		if (cars.size() > 1) {
+			adapter.clear();
+			for (Car car : cars) {
+				carNames.add(car.getCarName());
+			}
+		} else {
+			adapter.clear();
+			carNames.add("none");
+		}
+		adapter.notifyDataSetChanged();
+	}
+	
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
 		super.onViewCreated(view, savedInstanceState);
@@ -114,6 +138,7 @@ public class CarListFragment extends ListFragment {
 		}
 
 		mCallbacks = (Callbacks) activity;
+		
 	}
 
 	@Override
@@ -131,7 +156,7 @@ public class CarListFragment extends ListFragment {
 
 		// Notify the active callbacks interface (the activity, if the
 		// fragment is attached to one) that an item has been selected.
-//		mCallbacks.onItemSelected(DummyContent.ITEMS.get(position).id);
+		// mCallbacks.onItemSelected(DummyContent.ITEMS.get(position).id);
 	}
 
 	@Override

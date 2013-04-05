@@ -104,4 +104,8 @@ public class CarListActivity extends FragmentActivity implements
     	Intent intent = new Intent(this, NewCarActivity.class);
     	startActivity(intent);
     }
+    
+    public void deleteAll() {
+    	
+    }
 }

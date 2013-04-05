@@ -41,22 +41,23 @@ public class Garage {
 		
 		/* For Testing, Try this */
 		//TODO Take out this section
-		Log.d("Garage", "Adding initial data");
-		CarTestData carTestData = new CarTestData();
-		List<Car> carTestList = carTestData.carTestList;
 		
-		int i = carTestList.size();
-		carArray = new Car[i];
-		i = 0;
-		
-		for(Car car : carTestList) {
-			carList.add(car);
-			carArray[i] = car;
-			Log.d("Garage - Test List", "i: " + i);
-			i++;
-			/* Add to database */
-			addCar(car);
-		}
+//		Log.d("Garage", "Adding initial data");
+//		CarTestData carTestData = new CarTestData();
+//		List<Car> carTestList = carTestData.carTestList;
+//		
+//		int i = carTestList.size();
+//		carArray = new Car[i];
+//		i = 0;
+//		
+//		for(Car car : carTestList) {
+//			carList.add(car);
+//			carArray[i] = car;
+//			Log.d("Garage - Test List", "i: " + i);
+//			i++;
+//			/* Add to database */
+//			addCar(car);
+//		}
 		
 		close();
 		
@@ -95,10 +96,15 @@ public class Garage {
 		
 		Log.i("Garage - Add Car", "Car Year: " + car.getYear());
 		cv.put(DBContract.Cars.COLUMN_NAME_YEAR, car.getYear());
+
+//		Log.i("Garage - Add Car", "Car Mileage: " + car.()); // TODO need a getter for this...
+//		cv.put(DBContract.Cars.COLUMN_NAME_YEAR, car.getYear());
 		
 		long carId;
+		open();
 		carId = dbh.addCar(db, cv);
 		Log.i("Garage - Add Car", "Car ID: " + carId);
+		close();
 		car.setId(carId);
 	}
 	
@@ -126,13 +132,17 @@ public class Garage {
 		cv.put(DBContract.Cars.COLUMN_NAME_YEAR, car.getYear());
 		
 		// TODO Could add dialog that says updated or something
+		open();
 		int rows = dbh.updateCar(db, cv);
 		Log.i("Garage", "Rows Affected: " + rows);
+		close();
 	}
 	
 	public List<Car> getAllCars() {
 		Log.d("Garage", "Getting all Cars");
+		open();
 		Cursor cursor = dbh.getAllCars(db);
+		close();
 		
 		List<Car> cars = new ArrayList<Car>();
 		
@@ -149,8 +159,9 @@ public class Garage {
 	
 	public Car getCar(Long id) {
 		Log.d("Garage", "Getting a car: " + Long.toString(id));
-		
+		open();
 		Cursor cursor = dbh.getACar(db, id);
+		close();
 		Car car = cursorToCar(cursor);
 		
 		// Can't forget this!
@@ -206,5 +217,11 @@ public class Garage {
 			return carList;
 		}
 		return getAllCars(); // TODO not a good way to do this...
+	}
+	
+	public void refreshDB() {
+		open();
+		dbh.startFresh(db);
+		close();
 	}
 }

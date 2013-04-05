@@ -14,6 +14,7 @@ public class MPGTrackerDBHelper extends SQLiteOpenHelper {
 	
 	/*
 	 * If db schema changes, increment the database version
+	 * before doing that though, make sure to implement onUpgrade()
 	 */
 	public static final int DATABASE_VERSION = 1;
 	public static final String DATABASE_NAME = "mpgtracker.db";
@@ -28,6 +29,9 @@ public class MPGTrackerDBHelper extends SQLiteOpenHelper {
 	// Type Vars
 	private static final String TEXT_TYPE = " TEXT";
 	private static final String INT_TYPE = " INTEGER";
+	
+	// Table Array
+	private static final String[] TABLE_NAMES = {DBContract.Cars.TABLE_NAME, DBContract.Fillups.TABLE_NAME};
 	
 	// Table Create Statements
 	private static final String SQL_CREATE_TABLE_CARS = 
@@ -50,6 +54,8 @@ public class MPGTrackerDBHelper extends SQLiteOpenHelper {
 			DBContract.Fillups.COLUMN_NAME_GALLONS_IN + TEXT_TYPE + COMMA_SEP + 
 			DBContract.Fillups.COLUMN_NAME_PRICE_PER_GALLON + TEXT_TYPE + ")";
 	
+	// Drop Tables Statement - Update this if adding new Tables
+	public static final String SQL_DROP_TABLES = "DROP TABLE IF EXISTS ";
 	
 	public MPGTrackerDBHelper(Context context) {
 		super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -71,7 +77,7 @@ public class MPGTrackerDBHelper extends SQLiteOpenHelper {
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		Log.v("MPGTrackerDBHelper", "Upgrading SQLite Database");
-		// TODO Auto-generated method stub
+		// implement this before updating version number
 		
 	}
 	
@@ -114,5 +120,15 @@ public class MPGTrackerDBHelper extends SQLiteOpenHelper {
 		        null, null, null);
 		    cursor.moveToFirst();
 		return cursor;
+	}
+	
+	public void startFresh(SQLiteDatabase db) {
+		Log.d("MPGTrackerDBHelper", "Entered startFresh");
+		for (String sql : TABLE_NAMES) {
+			Log.d("MPGTrackerDBHelper - startFresh", "Dropping Table: " + sql);
+			db.execSQL(SQL_DROP_TABLES + sql);
+		}
+		
+		onCreate(db);
 	}
 }
