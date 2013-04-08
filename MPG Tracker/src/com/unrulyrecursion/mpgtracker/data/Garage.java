@@ -190,7 +190,7 @@ public class Garage {
 		int year = cursor.getInt(5);
 		Log.i("Garage", "Car Year: " + year);
 		
-		long totalMileage = cursor.getLong(6);
+		int totalMileage = cursor.getInt(6);
 		Log.i("Garage", "Car Mileage: " + totalMileage);
 		
 		Car car = new Car(carId, carName, color, make, model, year, totalMileage);

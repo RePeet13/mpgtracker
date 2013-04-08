@@ -13,12 +13,16 @@ public class Car {
 	private String color;
 	private final static String defColor = "DEEP_RED";
 	private long id;
-	private long totalMileage;
+	private int totalMileage;
 	private int year;
 	
-	public Car(long id, String carName, String color, String make, String model, int year, long totalMileage) {
+	public Car(long id, String carName, String color, String make, String model, int year, int totalMileage) {
 
-		this.id = id; // TODO This should receive some special attention (if its -1, or null, etc)
+		Log.d("Car", "Entering Car Constructor");
+		
+		if (id != -1) {
+			this.id = id;
+		}
 		
 		this.carName = carName;
 		this.color = color;
@@ -34,7 +38,7 @@ public class Car {
 	}
 	
 	public Car(String carName, String color, String make, String model, int year) {
-		this(-1, carName, color, make, model, year, 0);
+		this(carName, color, make, model, year, 0);
 	}
 	
 	public Car(String carName, String color) {
@@ -134,8 +138,14 @@ public class Car {
 		return id;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public boolean setId(long id) {
+		if (this.id < 0) {
+			this.id = id;
+			return true;
+		} else {
+			Log.d("Car", "Attempted to set id when already set"); // TODO consider another method to allow setting set id's
+			return false;
+		}
 	}
 
 	public int getYear() {
@@ -144,6 +154,14 @@ public class Car {
 
 	public void setYear(int year) {
 		this.year = year;
+	}
+
+	public int getTotalMileage() {
+		return totalMileage;
+	}
+
+	public void setTotalMileage(int totalMileage) {
+		this.totalMileage = totalMileage;
 	}
 
 

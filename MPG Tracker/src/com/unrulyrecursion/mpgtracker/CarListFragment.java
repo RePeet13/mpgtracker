@@ -6,6 +6,7 @@ import java.util.List;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -27,8 +28,7 @@ public class CarListFragment extends ListFragment {
 
 	private Garage garage;
 	private final ArrayList<String> carNames = new ArrayList<String>();
-	private final ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(), 
-			android.R.layout.simple_list_item_1, carNames);
+	private ArrayAdapter<String> adapter;
 
 	/**
 	 * The serialization (saved instance state) Bundle key representing the
@@ -79,7 +79,7 @@ public class CarListFragment extends ListFragment {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
+		Log.d("Car List Fragment", "OnCreate");
 		garage = new Garage(getActivity());
 
 		// RowColorAdapter adapter = new RowColorAdapter(getActivity(),
@@ -87,7 +87,7 @@ public class CarListFragment extends ListFragment {
 		
 		ArrayList<Car> cars = (ArrayList<Car>) garage.getCarList();
 		
-		if (cars.size() > 1) {
+		if (cars.size() >= 1) {
 			
 			for (Car car : cars) {
 				carNames.add(car.getCarName());
@@ -96,14 +96,19 @@ public class CarListFragment extends ListFragment {
 		} else {
 			carNames.add("(none)");
 		}
+		
+		adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, carNames);
+		
 		this.setListAdapter(adapter);
 
 	}
 
 	@Override
-	public void onResume() { // TODO this doesn't work as I think it should - Fix
+	public void onResume() { // TODO this doesn't work as I think it should - Fix - also, dont clear every time, that sucks
+		super.onResume();
+		Log.d("Car List Fragment", "OnResume");
 		ArrayList<Car> cars = (ArrayList<Car>) garage.getCarList();
-		if (cars.size() > 1) {
+		if (cars.size() >= 1) {
 			adapter.clear();
 			for (Car car : cars) {
 				carNames.add(car.getCarName());
