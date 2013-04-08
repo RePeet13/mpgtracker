@@ -24,7 +24,7 @@ public class CarTestData {
 		Car littleRedSportsCar = new Car("Little Red Sports Car", "Red", "Mazda", "Miata", 1991);
 		carTestList.add(littleRedSportsCar);
 		
-
+ 
 		carTestArray = new Car[] {limpingOx, scarletStreak, lumberingElephant, silverBullet, littleRedSportsCar};
 	}
 }
