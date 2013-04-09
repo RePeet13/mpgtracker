@@ -4,31 +4,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <LinearLayout
-        style="?android:attr/buttonBarStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal" >
-
-        <Button
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:onClick="newCar"
-            android:text="@string/button_create_new_car" />
-
-        <Button
-            style="?android:attr/buttonBarButtonStyle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:onClick="deleteAll"
-            android:text="Delete All Cars" />
-    </LinearLayout>
-
     <fragment
         android:id="@+id/car_list"
         android:name="com.unrulyrecursion.mpgtracker.CarListFragment"
@@ -37,13 +12,6 @@
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
         tools:context=".CarListActivity"
-        tools:layout="@android:layout/list_content" >
-
-        <ListView
-            android:id="@+id/list"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        
-    </fragment>
+        tools:layout="@android:layout/list_content" />
 
 </LinearLayout>

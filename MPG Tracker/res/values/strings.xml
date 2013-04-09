@@ -25,5 +25,6 @@
     <string name="model">Model</string>
     <string name="color">Color</string>
     <string name="current_total_mileage">Current Total Mileage</string>
+    <string name="button_delete_all">Delete All Cars</string>
 
 </resources>
