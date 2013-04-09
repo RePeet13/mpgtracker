@@ -81,9 +81,11 @@ public class CarListFragment extends ListFragment {
 	@Override
 	public void onResume() { // TODO this doesn't work as I think it should - Fix - also, dont clear every time, that sucks
 		super.onResume();
-		garage = new Garage(this.getActivity());
 		Log.d("Car List Fragment", "OnResume");
-		ArrayList<Car> cars = (ArrayList<Car>) garage.getCarList();
+		
+		garage = new Garage(this.getActivity());
+		ArrayList<Car> cars = new ArrayList<Car>(garage.getCarList());
+		
 		if (cars.size() >= 1) {
 			adapter.clear();
 			for (Car car : cars) {
