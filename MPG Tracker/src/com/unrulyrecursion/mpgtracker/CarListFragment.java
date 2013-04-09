@@ -1,11 +1,9 @@
 package com.unrulyrecursion.mpgtracker;
 
-import java.util.ArrayList;
 import java.util.List;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,12 +12,10 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import com.unrulyrecursion.mpgtracker.data.Car;
 import com.unrulyrecursion.mpgtracker.data.Garage;
 import com.unrulyrecursion.mpgtracker.data.RowColorAdapter;
-import com.unrulyrecursion.mpgtracker.test.CarTestData;
 
 /**
  * A list fragment representing a list of Cars. This fragment also supports
@@ -30,7 +26,7 @@ import com.unrulyrecursion.mpgtracker.test.CarTestData;
  * Activities containing this fragment MUST implement the {@link Callbacks}
  * interface.
  */
-public class CarListFragment extends Fragment {
+public class CarListFragment extends ListFragment {
 
 	private Garage garage;
 	private List<Car> cars;
@@ -111,7 +107,7 @@ public class CarListFragment extends Fragment {
     				}
     			});
     	
-    	mListView = (ListView) v.findViewById(R.id.list);
+    	mListView = (ListView) v.findViewById(android.R.id.list);
     	mListView.setAdapter(adapter);
     	mListView.setOnItemClickListener(new OnItemClickListener() { //Might need (taken from gitmad code)
 
@@ -140,17 +136,17 @@ public class CarListFragment extends Fragment {
 		mListView.setAdapter(adapter);
 	}
 	
-//	@Override
-//	public void onViewCreated(View view, Bundle savedInstanceState) {
-//		super.onViewCreated(view, savedInstanceState);
-//
-//		// Restore the previously serialized activated item position.
-//		if (savedInstanceState != null
-//				&& savedInstanceState.containsKey(STATE_ACTIVATED_POSITION)) {
-//			setActivatedPosition(savedInstanceState
-//					.getInt(STATE_ACTIVATED_POSITION));
-//		}
-//	}
+	@Override
+	public void onViewCreated(View view, Bundle savedInstanceState) {
+		super.onViewCreated(view, savedInstanceState);
+
+		// Restore the previously serialized activated item position.
+		if (savedInstanceState != null
+				&& savedInstanceState.containsKey(STATE_ACTIVATED_POSITION)) {
+			setActivatedPosition(savedInstanceState
+					.getInt(STATE_ACTIVATED_POSITION));
+		}
+	}
 
 	@Override
 	public void onAttach(Activity activity) {
@@ -174,15 +170,15 @@ public class CarListFragment extends Fragment {
 		mCallbacks = sDummyCallbacks;
 	}
 
-//	@Override
-//	public void onListItemClick(ListView listView, View view, int position,
-//			long id) {
-//		super.onListItemClick(listView, view, position, id);
-//
-//		// Notify the active callbacks interface (the activity, if the
-//		// fragment is attached to one) that an item has been selected.
-//		// mCallbacks.onItemSelected(DummyContent.ITEMS.get(position).id);
-//	}
+	@Override
+	public void onListItemClick(ListView listView, View view, int position,
+			long id) {
+		super.onListItemClick(listView, view, position, id);
+
+		// Notify the active callbacks interface (the activity, if the
+		// fragment is attached to one) that an item has been selected.
+		// mCallbacks.onItemSelected(DummyContent.ITEMS.get(position).id);
+	}
 
 	@Override
 	public void onSaveInstanceState(Bundle outState) {
@@ -193,27 +189,27 @@ public class CarListFragment extends Fragment {
 		}
 	}
 
-//	/**
-//	 * Turns on activate-on-click mode. When this mode is on, list items will be
-//	 * given the 'activated' state when touched.
-//	 */
-//	public void setActivateOnItemClick(boolean activateOnItemClick) {
-//		// When setting CHOICE_MODE_SINGLE, ListView will automatically
-//		// give items the 'activated' state when touched.
-//		getListView().setChoiceMode(
-//				activateOnItemClick ? ListView.CHOICE_MODE_SINGLE
-//						: ListView.CHOICE_MODE_NONE);
-//	}
-//
-//	private void setActivatedPosition(int position) {
-//		if (position == ListView.INVALID_POSITION) {
-//			getListView().setItemChecked(mActivatedPosition, false);
-//		} else {
-//			getListView().setItemChecked(position, true);
-//		}
-//
-//		mActivatedPosition = position;
-//	}
+	/**
+	 * Turns on activate-on-click mode. When this mode is on, list items will be
+	 * given the 'activated' state when touched.
+	 */
+	public void setActivateOnItemClick(boolean activateOnItemClick) {
+		// When setting CHOICE_MODE_SINGLE, ListView will automatically
+		// give items the 'activated' state when touched.
+		getListView().setChoiceMode(
+				activateOnItemClick ? ListView.CHOICE_MODE_SINGLE
+						: ListView.CHOICE_MODE_NONE);
+	}
+
+	private void setActivatedPosition(int position) {
+		if (position == ListView.INVALID_POSITION) {
+			getListView().setItemChecked(mActivatedPosition, false);
+		} else {
+			getListView().setItemChecked(position, true);
+		}
+
+		mActivatedPosition = position;
+	}
 	
     public void newCar() {
     	Log.d("Car List Fragment", "Entered newCar method");
