@@ -2,8 +2,9 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/row_background"
     android:layout_width="match_parent"
-	    android:layout_height="50dp"
+	android:layout_height="50dp"
     android:orientation="vertical" 
     android:background="@drawable/button_silver" >
     
