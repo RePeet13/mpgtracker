@@ -2,14 +2,18 @@ package com.unrulyrecursion.mpgtracker;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import com.unrulyrecursion.mpgtracker.data.Car;
@@ -26,11 +30,13 @@ import com.unrulyrecursion.mpgtracker.test.CarTestData;
  * Activities containing this fragment MUST implement the {@link Callbacks}
  * interface.
  */
-public class CarListFragment extends ListFragment {
+public class CarListFragment extends Fragment {
 
 	private Garage garage;
-	private final ArrayList<String> carNames = new ArrayList<String>();
-	private ArrayAdapter<String> adapter;
+	private List<Car> cars;
+	private RowColorAdapter adapter;
+	private ListView mListView;
+	private Car mCurrentCar;
 
 	/**
 	 * The serialization (saved instance state) Bundle key representing the
@@ -77,44 +83,74 @@ public class CarListFragment extends ListFragment {
 	 */
 	public CarListFragment() {
 	}
+	
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+            Bundle savedInstanceState) {
+
+    	Log.d("CarList Fragment", "OnCreateView");
+    	
+        View v = inflater.inflate(R.layout.fragment_car_list, container, false);
+    	
+    	/* Chain to build listener for buttons */
+    	v.findViewById(R.id.create_new_car).setOnClickListener(
+    			new OnClickListener() {
+    				
+    				@Override
+    				public void onClick(View v) {
+    					newCar();
+    				}
+    			});
+    	
+    	v.findViewById(R.id.delete_all_cars).setOnClickListener(
+    			new OnClickListener() {
+    				
+    				@Override
+    				public void onClick(View v) {
+    					deleteAll();
+    				}
+    			});
+    	
+    	mListView = (ListView) v.findViewById(R.id.list);
+    	mListView.setAdapter(adapter);
+    	mListView.setOnItemClickListener(new OnItemClickListener() { //Might need (taken from gitmad code)
+
+            @Override
+            public void onItemClick(AdapterView<?> listView, View view,
+                    int position, long id) {
+//                mCurrentCar = adapter.select(position);
+            }
+        });
+    	return v;
+    }
 
 	@Override
-	public void onResume() { // TODO this doesn't work as I think it should - Fix - also, dont clear every time, that sucks
+	public void onResume() {
 		super.onResume();
 		Log.d("Car List Fragment", "OnResume");
 		
 		garage = new Garage(this.getActivity());
-		ArrayList<Car> cars = new ArrayList<Car>(garage.getCarList());
+		cars = garage.getCarList();
 		
-		if (cars.size() >= 1) {
-			adapter.clear();
-			for (Car car : cars) {
-				carNames.add(car.getCarName());
-			}
-		} else {
-			adapter.clear();
-			carNames.add("none");
+		for (Car car : cars) {
+			Log.d("Car List Fragment", "OnResume Found: " + car.getCarName());
 		}
-		adapter.notifyDataSetChanged();
+		
+		adapter = new RowColorAdapter(this.getActivity(), cars);
+		mListView.setAdapter(adapter);
 	}
 	
 //	@Override
-//	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-//            Bundle savedInstanceState) {
-//		
+//	public void onViewCreated(View view, Bundle savedInstanceState) {
+//		super.onViewCreated(view, savedInstanceState);
+//
+//		// Restore the previously serialized activated item position.
+//		if (savedInstanceState != null
+//				&& savedInstanceState.containsKey(STATE_ACTIVATED_POSITION)) {
+//			setActivatedPosition(savedInstanceState
+//					.getInt(STATE_ACTIVATED_POSITION));
+//		}
 //	}
-	
-	@Override
-	public void onViewCreated(View view, Bundle savedInstanceState) {
-		super.onViewCreated(view, savedInstanceState);
-
-		// Restore the previously serialized activated item position.
-		if (savedInstanceState != null
-				&& savedInstanceState.containsKey(STATE_ACTIVATED_POSITION)) {
-			setActivatedPosition(savedInstanceState
-					.getInt(STATE_ACTIVATED_POSITION));
-		}
-	}
 
 	@Override
 	public void onAttach(Activity activity) {
@@ -138,15 +174,15 @@ public class CarListFragment extends ListFragment {
 		mCallbacks = sDummyCallbacks;
 	}
 
-	@Override
-	public void onListItemClick(ListView listView, View view, int position,
-			long id) {
-		super.onListItemClick(listView, view, position, id);
-
-		// Notify the active callbacks interface (the activity, if the
-		// fragment is attached to one) that an item has been selected.
-		// mCallbacks.onItemSelected(DummyContent.ITEMS.get(position).id);
-	}
+//	@Override
+//	public void onListItemClick(ListView listView, View view, int position,
+//			long id) {
+//		super.onListItemClick(listView, view, position, id);
+//
+//		// Notify the active callbacks interface (the activity, if the
+//		// fragment is attached to one) that an item has been selected.
+//		// mCallbacks.onItemSelected(DummyContent.ITEMS.get(position).id);
+//	}
 
 	@Override
 	public void onSaveInstanceState(Bundle outState) {
@@ -157,25 +193,38 @@ public class CarListFragment extends ListFragment {
 		}
 	}
 
-	/**
-	 * Turns on activate-on-click mode. When this mode is on, list items will be
-	 * given the 'activated' state when touched.
-	 */
-	public void setActivateOnItemClick(boolean activateOnItemClick) {
-		// When setting CHOICE_MODE_SINGLE, ListView will automatically
-		// give items the 'activated' state when touched.
-		getListView().setChoiceMode(
-				activateOnItemClick ? ListView.CHOICE_MODE_SINGLE
-						: ListView.CHOICE_MODE_NONE);
-	}
+//	/**
+//	 * Turns on activate-on-click mode. When this mode is on, list items will be
+//	 * given the 'activated' state when touched.
+//	 */
+//	public void setActivateOnItemClick(boolean activateOnItemClick) {
+//		// When setting CHOICE_MODE_SINGLE, ListView will automatically
+//		// give items the 'activated' state when touched.
+//		getListView().setChoiceMode(
+//				activateOnItemClick ? ListView.CHOICE_MODE_SINGLE
+//						: ListView.CHOICE_MODE_NONE);
+//	}
+//
+//	private void setActivatedPosition(int position) {
+//		if (position == ListView.INVALID_POSITION) {
+//			getListView().setItemChecked(mActivatedPosition, false);
+//		} else {
+//			getListView().setItemChecked(position, true);
+//		}
+//
+//		mActivatedPosition = position;
+//	}
+	
+    public void newCar() {
+    	Log.d("Car List Fragment", "Entered newCar method");
+    	Intent intent = new Intent(this.getActivity(), NewCarActivity.class);
+    	startActivity(intent);
+    }
+    
+    public void deleteAll() {
+    	Log.d("Car List Fragment", "Entered deleteAll method");
 
-	private void setActivatedPosition(int position) {
-		if (position == ListView.INVALID_POSITION) {
-			getListView().setItemChecked(mActivatedPosition, false);
-		} else {
-			getListView().setItemChecked(position, true);
-		}
-
-		mActivatedPosition = position;
-	}
+    	// TODO pop up a dialog to confirm
+    	// call delete all on dbhandler, reget list notify changed?
+    }
 }

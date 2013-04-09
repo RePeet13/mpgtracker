@@ -44,6 +44,7 @@ public class NewCarActivity extends Activity {
 	public void onResume() { // TODO should restore values in edittexts if
 								// theyre there
 		super.onResume();
+		garage = new Garage(this);
 
 	}
 
@@ -84,7 +85,7 @@ public class NewCarActivity extends Activity {
 
 		Car car = new Car(carName, color, make, model, year, mileage);
 
-		if (car.getCarName() == null) {
+		if (car.getCarName() != null) {
 			garage.addCar(car);
 		}
 		else {

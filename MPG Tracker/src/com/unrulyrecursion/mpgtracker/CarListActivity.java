@@ -49,8 +49,8 @@ public class CarListActivity extends FragmentActivity implements
 
 			// In two-pane mode, list items should be given the
 			// 'activated' state when touched.
-			((CarListFragment) getSupportFragmentManager().findFragmentById(
-					R.id.car_list)).setActivateOnItemClick(true);
+//			((CarListFragment) getSupportFragmentManager().findFragmentById(
+//					R.id.fragment)).setActivateOnItemClick(true);
 		}
 
 		// TODO: If exposing deep links into your app, handle intents here.
