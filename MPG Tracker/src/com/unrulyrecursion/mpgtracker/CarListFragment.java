@@ -7,7 +7,9 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import com.unrulyrecursion.mpgtracker.data.Car;
@@ -77,35 +79,9 @@ public class CarListFragment extends ListFragment {
 	}
 
 	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		Log.d("Car List Fragment", "OnCreate");
-		garage = new Garage(getActivity());
-
-		// RowColorAdapter adapter = new RowColorAdapter(getActivity(),
-		// garage.getCarArray());
-		
-		ArrayList<Car> cars = (ArrayList<Car>) garage.getCarList();
-		
-		if (cars.size() >= 1) {
-			
-			for (Car car : cars) {
-				carNames.add(car.getCarName());
-			}
-
-		} else {
-			carNames.add("(none)");
-		}
-		
-		adapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, carNames);
-		
-		this.setListAdapter(adapter);
-
-	}
-
-	@Override
 	public void onResume() { // TODO this doesn't work as I think it should - Fix - also, dont clear every time, that sucks
 		super.onResume();
+		garage = new Garage(this.getActivity());
 		Log.d("Car List Fragment", "OnResume");
 		ArrayList<Car> cars = (ArrayList<Car>) garage.getCarList();
 		if (cars.size() >= 1) {
@@ -119,6 +95,12 @@ public class CarListFragment extends ListFragment {
 		}
 		adapter.notifyDataSetChanged();
 	}
+	
+//	@Override
+//	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+//            Bundle savedInstanceState) {
+//		
+//	}
 	
 	@Override
 	public void onViewCreated(View view, Bundle savedInstanceState) {
