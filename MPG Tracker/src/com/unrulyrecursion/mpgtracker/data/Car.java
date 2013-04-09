@@ -18,7 +18,7 @@ public class Car {
 	
 	public Car(long id, String carName, String color, String make, String model, int year, int totalMileage) {
 
-		Log.d("Car", "Entering Car Constructor");
+		Log.i("Car", "Entering Car Constructor");
 		
 		if (id != -1) {
 			this.id = id;
@@ -30,6 +30,8 @@ public class Car {
 		this.model = model;
 		this.year = year;
 		this.totalMileage = totalMileage;
+		
+		Log.d("Car", "Made car: " + toString());
 
 	}
 	
@@ -96,8 +98,8 @@ public class Car {
 	public String toString() {
 		StringBuilder out = new StringBuilder();
 		out.append(carName);
-		out.append(" (id - " + id + ") ");
-		out.append(Integer.toString(year) + " " + make + " " + model + " (color: " + color + ")");
+		out.append(": (id - " + id + ") ");
+		out.append(Integer.toString(year) + " " + make + " " + model + " (color: " + color + ")" + " Total Mileage: " + totalMileage);
 		return out.toString();
 	}
 	
@@ -143,7 +145,7 @@ public class Car {
 			this.id = id;
 			return true;
 		} else {
-			Log.d("Car", "Attempted to set id when already set"); // TODO consider another method to allow setting set id's
+			Log.d("Car", carName + ": Attempted to set id when already set"); // TODO consider another method to allow setting set id's
 			return false;
 		}
 	}

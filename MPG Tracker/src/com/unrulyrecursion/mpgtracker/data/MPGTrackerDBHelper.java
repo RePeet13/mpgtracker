@@ -108,9 +108,7 @@ public class MPGTrackerDBHelper extends SQLiteOpenHelper {
 	}
 	
 	public Cursor getAllCars(SQLiteDatabase db) {
-		Cursor cursor = db.query(DBContract.Cars.TABLE_NAME,
-		        DBContract.Cars.COLUMNS, null, null, null, null, null);
-		    cursor.moveToFirst();
+		Cursor cursor = db.rawQuery("SELECT * FROM " + DBContract.Cars.TABLE_NAME, null);
 		return cursor;
 	}
 	
@@ -131,4 +129,5 @@ public class MPGTrackerDBHelper extends SQLiteOpenHelper {
 		
 		onCreate(db);
 	}
+	
 }
